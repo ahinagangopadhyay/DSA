@@ -1,0 +1,53 @@
+class Solution {
+public:
+    string reverseWords(string s) {
+        vector<string> s1;
+        string w = "";
+        s = s + " ";  // Append an extra space to handle the last word
+        
+        // Split the string into words
+        for (int i = 0; i < s.size(); i++) {
+            if (s[i] == ' ') {
+                if (!w.empty()) {  // Only push non-empty words to the vector
+                    s1.push_back(w);
+                }
+                w = "";  // Reset the current word
+            } else {
+                w = w + s[i];  // Append characters to the current word
+            }
+        }
+        
+        string m = "";
+        // Reverse the order of words and add spaces between them
+        for (int i = s1.size() - 1; i >= 0; i--) {
+            m = m + s1[i];
+            if (i != 0) {
+                m = m + " ";  // Add space only between words
+            }
+        }
+        
+        // Remove leading spaces
+        m.erase(0, m.find_first_not_of(" "));
+        
+        // Remove trailing spaces
+        m.erase(m.find_last_not_of(" ") + 1);
+        
+        // Remove extra spaces between words (if any)
+        string result = "";
+        bool inWord = false;  // Flag to track whether we're inside a word
+        
+        for (int i = 0; i < m.size(); i++) {
+            if (m[i] == ' ') {
+                if (inWord) {
+                    result += ' ';  // Add only one space between words
+                    inWord = false;
+                }
+            } else {
+                result += m[i];  // Add the character to the result
+                inWord = true;
+            }
+        }
+        
+        return result;
+    }
+};
