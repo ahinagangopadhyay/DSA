@@ -1,0 +1,44 @@
+class Solution {
+public:
+  bool subsetSumUtil(int ind, int target, vector<int>& arr, vector<vector<int>>& dp) {
+    // If the target sum is 0, we have found a subset
+    if (target == 0)
+        return true;
+
+    // If we have reached the first element in 'arr'
+    if (ind == 0)
+        return arr[0] == target;
+
+    // If the result for this subproblem has already been computed, return it
+    if (dp[ind][target] != -1)
+        return dp[ind][target];
+
+    // Try not taking the current element into the subset
+    bool notTaken = subsetSumUtil(ind - 1, target, arr, dp);
+
+    // Try taking the current element into the subset if it doesn't exceed the target
+    bool taken = false;
+    if (arr[ind] <= target)
+        taken = subsetSumUtil(ind - 1, target - arr[ind], arr, dp);
+
+    // Store the result in the dp array to avoid recomputation
+    return dp[ind][target] = notTaken || taken;
+}
+
+    bool canPartition(vector<int>& nums) {
+ 
+      int n=nums.size();
+      int s=0;
+      for(int i=0;i<n;i++)
+      {
+        s+=nums[i];
+      }
+           if(s%2!=0)
+      return false;
+ int k=s/2;
+         // Initialize a 2D DP array for memoization
+    vector<vector<int>> dp(n, vector<int>(k + 1, -1));
+
+    return subsetSumUtil(n - 1, k, nums, dp);
+    }
+};
