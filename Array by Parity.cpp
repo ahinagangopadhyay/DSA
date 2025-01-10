@@ -1,5 +1,6 @@
 //Sort array by Parity using two pointers
 class Solution {
+
 public:
     vector<int> sortArrayByParity(vector<int>& nums) {     
        int i=0;
