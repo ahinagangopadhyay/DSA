@@ -1,4 +1,4 @@
-//Sort array by Parity using two pointers
+/*Sort array by Parity using two pointers*/
 class Solution {
 
 public:
