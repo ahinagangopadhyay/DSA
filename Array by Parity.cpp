@@ -11,7 +11,7 @@ public:
            }
            else if(nums[i]%2 == 0 & nums[j]%2 != 0){
                 i = i+1;
-                j = j-1;   
+                j = j-1;
            }
            else if(nums[i]%2 != 0 & nums[j]%2 == 0){
                 swap(nums[i],nums[j]);
